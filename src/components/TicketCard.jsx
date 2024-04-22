@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const TicketCard = ({ segment, page, searchTerm }) => {
     const [events, setEvents] = useState([]);
-    const currentDate = new Date().toISOString(); // Gets today's date in ISO format
+    const currentDate = new Date().toISOString(); // Gets today's date
 
     useEffect(() => {
         const fetchData = async () => {
