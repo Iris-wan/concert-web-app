@@ -8,11 +8,13 @@ const App = () => {
     const [page, setPage] = useState(0);  // Pagination page state
     const [searchTerm, setSearchTerm] = useState('');
 
+    // Handler for changing the event segment
     const handleChangeSegment = (e) => {
         setSegment(e.target.value);
         setPage(0); // Reset to the first page when the segment changes
     };
 
+    // Update the search term as user types in the search bar
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
     };
@@ -21,6 +23,7 @@ const App = () => {
         <div className="App">
             <header className="App-header">
                 <h1>Ticket Information</h1>
+                <br/>
                 <div className="d-flex justify-content-start">
                     <input
                         type="text"
@@ -38,6 +41,7 @@ const App = () => {
             </header>
             <br/>
             <div className="d-flex justify-content-end mb-3">
+                {/* Navigation buttons for pagination */}
                 <button 
                     onClick={() => setPage(prev => Math.max(0, prev - 1))} 
                     disabled={page === 0} 
@@ -54,6 +58,7 @@ const App = () => {
                     <i className="bi bi-chevron-right"></i>
                 </button>
             </div>
+            {/* TicketCard component renders the events */}
             <TicketCard segment={segment} page={page} searchTerm={searchTerm} />
             <div className="d-flex justify-content-end mb-3">
                 <button 
@@ -63,6 +68,7 @@ const App = () => {
                     style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <i className="bi bi-chevron-left"></i>
+                {/* Add another set of navigation buttons for pagination at the bottom of the page */}
                 </button>
                 <button 
                     onClick={() => setPage(prev => prev + 1)}

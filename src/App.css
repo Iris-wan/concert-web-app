@@ -2,7 +2,6 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  /* text-align: center; */
 }
 
 .App-header {
@@ -15,9 +14,9 @@
 }
 
 .container {
-  min-height: 500px; /* Adjust based on your design needs */
+  min-height: 500px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start; /* Keeps items aligned at the start */
-  align-items: stretch; /* Ensures that flex children cover the full height */ 
+  justify-content: start; 
+  align-items: stretch; 
 }
