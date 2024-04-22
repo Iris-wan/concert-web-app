@@ -1,27 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import TicketCard from './components/TicketCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'; 
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const [segment, setSegment] = useState('Music');  // Default segment is 'Music'\
+    const [page, setPage] = useState(0);  // Pagination page state
+    const [searchTerm, setSearchTerm] = useState('');
 
-  return (
-    <>
-      <h1>Hello</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleChangeSegment = (e) => {
+        setSegment(e.target.value);
+        setPage(0); // Reset to the first page when the segment changes
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1>Ticket Information</h1>
+                <div className="d-flex justify-content-start">
+                    <input
+                        type="text"
+                        placeholder="Search events..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        className="form-control"
+                    />
+                    <select onChange={handleChangeSegment} className="custom-select">
+                        <option value="Music">Concerts</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Arts & Theatre">Arts & Theatre</option>
+                    </select>
+                </div>
+            </header>
+            <br/>
+            <div className="d-flex justify-content-end mb-3">
+                <button 
+                    onClick={() => setPage(prev => Math.max(0, prev - 1))} 
+                    disabled={page === 0} 
+                    className="btn rounded-circle"
+                    style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                    <i className="bi bi-chevron-left"></i>
+                </button>
+                <button 
+                    onClick={() => setPage(prev => prev + 1)}
+                    className="btn rounded-circle"
+                    style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                    <i className="bi bi-chevron-right"></i>
+                </button>
+            </div>
+            <TicketCard segment={segment} page={page} searchTerm={searchTerm} />
+            <div className="d-flex justify-content-end mb-3">
+                <button 
+                    onClick={() => setPage(prev => Math.max(0, prev - 1))} 
+                    disabled={page === 0} 
+                    className="btn rounded-circle"
+                    style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                    <i className="bi bi-chevron-left"></i>
+                </button>
+                <button 
+                    onClick={() => setPage(prev => prev + 1)}
+                    className="btn rounded-circle"
+                    style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                    <i className="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    );
 }
 
-export default App
+export default App;
