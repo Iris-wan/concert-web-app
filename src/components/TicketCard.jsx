@@ -9,7 +9,7 @@ const TicketCard = ({ segment, page, searchTerm }) => {
         const fetchData = async () => {
             try {
                 const result = await axios(
-                    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.REACT_APP_API_KEY}&segmentName=${encodeURIComponent(segment)}&keyword=${encodeURIComponent(searchTerm)}&page=${page}`
+                    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${import.meta.env.VITE_API_KEY}&segmentName=${encodeURIComponent(segment)}&keyword=${encodeURIComponent(searchTerm)}&page=${page}`
                 );
                 setEvents(result.data._embedded?.events || []);
             } catch (error) {
